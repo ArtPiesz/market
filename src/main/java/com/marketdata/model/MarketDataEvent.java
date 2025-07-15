@@ -9,6 +9,9 @@ public abstract class MarketDataEvent {
     private final long timestamp;  // znacznik czasu eventu
 
     public MarketDataEvent(String symbol, String source, long timestamp) {
+        if (symbol == null || source == null) {
+            throw new IllegalArgumentException("Symbol and source must not be null");
+        }
         this.symbol = symbol;
         this.source = source;
         this.timestamp = timestamp;

@@ -18,7 +18,7 @@ public class MockedStreamingAPI {
 
     private static final List<String> sources = Arrays.asList("API", "EXCHANGE");
 
-    private static final List<String> marketDataEventTypes = Arrays.asList("PRICE", "VOLUME","GREEKS");//, "GREEK");
+    private static final List<String> marketDataEventTypes = Arrays.asList("PRICE", "VOLUME","GREEK");//, "GREEK");
 
     public static Flowable<List<MarketDataEvent>> createMarketDataStream() {
         return Flowable.interval(50, TimeUnit.MILLISECONDS)

@@ -37,10 +37,13 @@ public class MarketDataProcessorImpl extends AbstractMarketDataProcessor<MarketD
     }
 
     private Optional<InternalMarketData> processSingleEvent(MarketDataEvent event) {
-        InstrumentData instrumentData = resolveInstrument(event.getSymbol()); // Wydzielenie logiki wyszukiwania instrumentu do osobnej metody poprawia przejrzystość
+        if (event == null) {
+            System.err.println("Null event encountered, skipping.");
+            return Optional.empty();
+        }
+
+        InstrumentData instrumentData = resolveInstrument(event.getSymbol());
         if (instrumentData == null) return Optional.empty();
-
-
 
         MarketDataHandler handler = handlerMap.get(event.getType());
         if (handler == null) {
