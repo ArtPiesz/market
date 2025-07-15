@@ -1,9 +1,12 @@
 package com.marketdata.model;
 
+import com.marketdata.api.model.MarketDataEventType;
+
 public abstract class MarketDataEvent {
-    private String symbol;
-    private String source;
-    private long timestamp;
+
+    private final String symbol;   // symbol giełdowy, np. "AAPL"
+    private final String source;   // źródło danych, np. "API", "EXCHANGE"
+    private final long timestamp;  // znacznik czasu eventu
 
     public MarketDataEvent(String symbol, String source, long timestamp) {
         this.symbol = symbol;
@@ -15,25 +18,14 @@ public abstract class MarketDataEvent {
         return symbol;
     }
 
-    public void setSymbol(String symbol) {
-        this.symbol = symbol;
-    }
-
-    public String getInternalId() {
-        return symbol;
-    }
-
-    public void setInternalId(String symbol) {
-        this.symbol = symbol;
+    public String getSource() {
+        return source;
     }
 
     public long getTimestamp() {
         return timestamp;
     }
 
-    public String getSource() {
-        return source;
-    }
-
-    public abstract com.marketdata.api.model.MarketDataEventType getType();
+    // każdy event implementuje ten getter jednoznacznie
+    public abstract MarketDataEventType getType();
 }

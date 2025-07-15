@@ -3,7 +3,8 @@ package com.marketdata.model;
 import com.marketdata.api.model.MarketDataEventType;
 
 public class PriceEvent extends MarketDataEvent {
-    private Double price;
+
+    private final Double price;
 
     public PriceEvent(String symbol, String source, Double price, long timestamp) {
         super(symbol, source, timestamp);
@@ -15,16 +16,17 @@ public class PriceEvent extends MarketDataEvent {
     }
 
     @Override
+    public MarketDataEventType getType() {
+        return MarketDataEventType.PRICE;
+    }
+
+    @Override
     public String toString() {
         return "PriceEvent{" +
                 "symbol='" + getSymbol() + '\'' +
                 ", price=" + price +
+                ", source='" + getSource() + '\'' +
                 ", timestamp=" + getTimestamp() +
                 '}';
-    }
-
-    @Override
-    public MarketDataEventType getType() {
-        return MarketDataEventType.PRICE;
     }
 }

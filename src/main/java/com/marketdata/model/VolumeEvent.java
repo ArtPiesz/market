@@ -3,7 +3,8 @@ package com.marketdata.model;
 import com.marketdata.api.model.MarketDataEventType;
 
 public class VolumeEvent extends MarketDataEvent {
-    private Double volume;
+
+    private final Double volume;
 
     public VolumeEvent(String symbol, String source, Double volume, long timestamp) {
         super(symbol, source, timestamp);
@@ -14,8 +15,9 @@ public class VolumeEvent extends MarketDataEvent {
         return volume;
     }
 
-    public void setVolume(Double volume) {
-        this.volume = volume;
+    @Override
+    public MarketDataEventType getType() {
+        return MarketDataEventType.VOLUME;
     }
 
     @Override
@@ -23,12 +25,8 @@ public class VolumeEvent extends MarketDataEvent {
         return "VolumeEvent{" +
                 "symbol='" + getSymbol() + '\'' +
                 ", volume=" + volume +
+                ", source='" + getSource() + '\'' +
                 ", timestamp=" + getTimestamp() +
                 '}';
-    }
-
-    @Override
-    public MarketDataEventType getType() {
-        return MarketDataEventType.VOLUME;
     }
 }
