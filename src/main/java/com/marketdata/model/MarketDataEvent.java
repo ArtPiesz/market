@@ -34,4 +34,6 @@ public abstract class MarketDataEvent {
     public String getSource() {
         return source;
     }
+
+    public abstract com.marketdata.api.model.MarketDataEventType getType();
 }

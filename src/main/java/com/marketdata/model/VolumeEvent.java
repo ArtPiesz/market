@@ -1,5 +1,7 @@
 package com.marketdata.model;
 
+import com.marketdata.api.model.MarketDataEventType;
+
 public class VolumeEvent extends MarketDataEvent {
     private Double volume;
 
@@ -23,5 +25,10 @@ public class VolumeEvent extends MarketDataEvent {
                 ", volume=" + volume +
                 ", timestamp=" + getTimestamp() +
                 '}';
+    }
+
+    @Override
+    public MarketDataEventType getType() {
+        return MarketDataEventType.VOLUME;
     }
 }

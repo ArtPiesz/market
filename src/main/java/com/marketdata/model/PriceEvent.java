@@ -1,5 +1,7 @@
 package com.marketdata.model;
 
+import com.marketdata.api.model.MarketDataEventType;
+
 public class PriceEvent extends MarketDataEvent {
     private Double price;
 
@@ -19,5 +21,10 @@ public class PriceEvent extends MarketDataEvent {
                 ", price=" + price +
                 ", timestamp=" + getTimestamp() +
                 '}';
+    }
+
+    @Override
+    public MarketDataEventType getType() {
+        return MarketDataEventType.PRICE;
     }
 }
